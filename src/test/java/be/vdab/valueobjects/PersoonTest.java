@@ -56,17 +56,17 @@ public class PersoonTest {
 	}
 
 	@Test
-	public void toString_geeft_String_met_meerdere_voornamen_gescheiden_door_een_spatie() {
-		voornamen.add("Hans");
-		voornamen.add("Kristof");
-		Persoon persoon = new Persoon(voornamen);
-		assertEquals("Hans Kristof", persoon.toString());
-	}
-
-	@Test
 	public void toString_geeft_String_met_enige_voornaam() {
 		voornamen.add("Hans");
 		Persoon persoon = new Persoon(voornamen);
 		assertEquals("Hans", persoon.toString());
+	}
+	
+	@Test
+	public void toString_geeft_String_met_meerdere_voornamen_gescheiden_door_een_spatie_in_de_juiste_volgorde() {
+		voornamen.add("Hans");
+		voornamen.add("Kristof");
+		Persoon persoon = new Persoon(voornamen);
+		assertEquals("Hans Kristof", persoon.toString());
 	}
 }
