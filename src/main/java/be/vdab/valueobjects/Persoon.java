@@ -7,7 +7,7 @@ public class Persoon {
 	private List<String> voornamen = new ArrayList<>();
 	
 	public Persoon(List<String> voornamen) {
-		if (voornamen.isEmpty()) {
+		if (voornamen.isEmpty() || voornamen==null) {
 			throw new IllegalArgumentException("Foutmelding: de voornamenlijst is leeg.");
 		} 
 		if (valideer(voornamen)) {

@@ -15,9 +15,16 @@ public class PersoonTest {
 	public void before() {
 		voornamen = new ArrayList<>();
 	}
-
+	
+	// EEN PERSOON HEEFT MINSTENS 1 VOORNAAM 
+	
+	@Test(expected = NullPointerException.class)
+	public void de_lijst_met_voornamen_mag_niet_null_zijn() {
+		Persoon persoon = new Persoon(null);
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
-	public void een_persoon_zonder_één_voornaam_bestaat_niet() {
+	public void een_persoon_heeft_minstens_één_voornaam() {
 		Persoon persoon = new Persoon(voornamen);
 	}
 
@@ -26,6 +33,8 @@ public class PersoonTest {
 		voornamen.add("Hans");
 		Persoon persoon = new Persoon(voornamen);
 	}
+	
+	// EEN PERSOON KAN GEEN TWEE KEER DEZELFDE VOORNAAM HEBBEN
 
 	@Test(expected = IllegalArgumentException.class)
 	public void een_persoon_kan_geen_twee_gelijke_voornamen_hebben() {
@@ -38,6 +47,14 @@ public class PersoonTest {
 	public void een_persoon_kan_wel_meerdere_verschillende_voornamen_hebben() {
 		voornamen.add("Hans");
 		voornamen.add("Kristof");
+		Persoon persoon = new Persoon(voornamen);
+	}
+	
+	// EEN VOORNAAM MOET MINSTENS 1 NIET-BLANCO TEKEN BEVATTEN
+	
+	@Test(expected = NullPointerException.class)
+	public void geen_enkele_voornaam_mag_null_zijn() {
+		voornamen.add(null);
 		Persoon persoon = new Persoon(voornamen);
 	}
 
@@ -54,6 +71,11 @@ public class PersoonTest {
 		voornamen.add("Kristof ");
 		Persoon persoon = new Persoon(voornamen);
 	}
+	
+	// DE toString METHOD MOET EEN STRING TERUGGEVEN DIE BESTAAT UIT
+	// ALLE VOORNAMEN VAN DIE PERSOON, GESCHEIDEN DOOR EEN SPATIE
+	// DE VOLGORDE VAN DE VOORNAMEN MOET GELIJK ZIJN AAN DE VOLGORDE ZOALS ZE
+	// IN DE CONSTRUCTOR PARAMETER WERDEN MEEGEGEVEN.
 
 	@Test
 	public void toString_geeft_String_met_enige_voornaam() {
@@ -63,7 +85,7 @@ public class PersoonTest {
 	}
 	
 	@Test
-	public void toString_geeft_String_met_meerdere_voornamen_met_spaties() {
+	public void toString_geeft_String_met_meerdere_voornamen_met_spaties_ertussen() {
 		voornamen.add("Hans");
 		voornamen.add("Kristof");
 		Persoon persoon = new Persoon(voornamen);
