@@ -1,6 +1,6 @@
 package be.vdab.valueobjects;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,10 +63,20 @@ public class PersoonTest {
 	}
 	
 	@Test
-	public void toString_geeft_String_met_meerdere_voornamen_gescheiden_door_een_spatie_in_de_juiste_volgorde() {
+	public void toString_geeft_String_met_meerdere_voornamen_met_spaties() {
 		voornamen.add("Hans");
 		voornamen.add("Kristof");
 		Persoon persoon = new Persoon(voornamen);
-		assertEquals("Hans Kristof", persoon.toString());
+		assertTrue(persoon.toString().equals("Hans Kristof"));
+		assertFalse(persoon.toString().equals("HansKristof"));
+	}
+	
+	@Test
+	public void toString_geeft_String_met_meerdere_voornamen_in_de_volgorde_zoals_ingegeven() {
+		voornamen.add("Hans");
+		voornamen.add("Kristof");
+		Persoon persoon = new Persoon(voornamen);
+		assertTrue(persoon.toString().equals("Hans Kristof"));
+		assertFalse(persoon.toString().equals("Kristof Hans"));
 	}
 }
